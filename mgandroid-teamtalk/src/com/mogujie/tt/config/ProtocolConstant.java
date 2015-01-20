@@ -200,12 +200,12 @@ public class ProtocolConstant {
 	public static final int IM_PDU_VERSION = 3;
 
 	// SERVICE_ID
-	public static final int SID_LOGIN = 0x0001;
-	public static final int SID_BUDDY_LIST = 0x0002;
-	public static final int SID_MSG = 0x0003;
-	public static final int SID_SWITCH_SERVER = 0x0004;
-	public static final int SID_GROUP = 0x0005;
-	public static final int SID_FILE = 0x0006;
+	public static final int SID_LOGIN = 1;
+	public static final int SID_BUDDY_LIST = 2;
+	public static final int SID_MSG = 3;
+	public static final int SID_SWITCH_SERVER = 4;
+	public static final int SID_GROUP = 5;
+	public static final int SID_FILE = 6;
 	public static final int SID_OTHER = 0x0007;
 	public static final int SID_DEFAULT = 0x0007;
 
@@ -214,10 +214,11 @@ public class ProtocolConstant {
 	public static final int SID_MAX = 0x0010;
 
 	// LOGIN IP,PORT
-	public static final String LOGIN_IP1 = "122.225.68.125";
+	public static final String LOGIN_IP1 = "10.58.168.156";
 	public static final String LOGIN_IP2 = "101.68.218.125";
 	
-	public static final int LOGIN_PORT = 9008;
+	//LOCALHOST
+	public static final int LOGIN_PORT = 11000;
 	
 	//open source
 //	public static final int LOGIN_PORT = 18008;

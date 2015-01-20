@@ -73,15 +73,15 @@ public class MsgServerPacket extends Packet {
         public MsgServerRequest() {
 
             Header msrHeader = new Header();
-            msrHeader.setVersion((short) SysConstant.PROTOCOL_VERSION);
+            msrHeader.setVersion(SysConstant.PROTOCOL_VERSION);
             //msrHeader.setFlag((short) SysConstant.PROTOCOL_FLAG);
             msrHeader.setServiceId(ProtocolConstant.SID_LOGIN);
             msrHeader.setCommandId(ProtocolConstant.CID_LOGIN_REQ_MSGSERVER);
             //msrHeader.setError((short) SysConstant.PROTOCOL_ERROR);
-            short seqNo = SequenceNumberMaker.getInstance().make();
+            int seqNo = SequenceNumberMaker.getInstance().make();
             msrHeader.setReserved(seqNo);
             msrHeader.setLength(SysConstant.PROTOCOL_HEADER_LENGTH);
-            
+            System.out.println("第一次发送数据包长度:" + msrHeader.getLength());
             setHeader(msrHeader);
         }
     }

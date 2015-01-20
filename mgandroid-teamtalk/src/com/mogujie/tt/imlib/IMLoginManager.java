@@ -52,7 +52,6 @@ public class IMLoginManager extends IMManager {
 
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
 
 			if (msg.what == MSG_SERVER_DISCONNECTED_EVENT) {
 				IMLoginManager.instance().disconnectMsgServer();
@@ -204,7 +203,7 @@ public class IMLoginManager extends IMManager {
 
 	private void fetchData() {
 		logger.i("login#fetch data");
-
+		//TODO load infomation
 		IMContactManager.instance().fetchContacts();
 		IMGroupManager.instance().fetchGroupList();
 	}
@@ -255,10 +254,10 @@ public class IMLoginManager extends IMManager {
 			msgServerAddrs = new ArrayList<String>();
 		}
 
-		msgServerAddrs.add(resp.getStrIp1());
-		msgServerAddrs.add(resp.getStrIp2());
+		msgServerAddrs.add(ProtocolConstant.LOGIN_IP1);
+		msgServerAddrs.add(ProtocolConstant.LOGIN_IP2);
 
-		msgServerPort = resp.getPort();
+		msgServerPort = ProtocolConstant.LOGIN_PORT;
 
 		logger.i("login#msgserver ip1:%s,  login ip2:%s, port:%d",
 				resp.getStrIp1(), resp.getStrIp2(), resp.getPort());
@@ -269,7 +268,7 @@ public class IMLoginManager extends IMManager {
 	private String pickLoginServerIp() {
 		// todo eric
 		// pick the second one right now
-		return msgServerAddrs.get(1);
+		return msgServerAddrs.get(0);
 	}
 
 	private void disconnectLoginServer() {
@@ -299,7 +298,7 @@ public class IMLoginManager extends IMManager {
 	private void connectMsgServer() {
 		currentStatus = STATUS_CONNECT_MSG_SERVER;
 
-		disconnectLoginServer();
+//		disconnectLoginServer();
 
 		String ip = pickLoginServerIp();
 
@@ -352,7 +351,7 @@ public class IMLoginManager extends IMManager {
 
 	private void reqLoginMsgServer() {
 		logger.i("login#reqLoginMsgServer");
-
+		System.err.println("reqLoginMsgServer");
 		currentStatus = STATUS_LOGINING_MSG_SERVER;
 
 		if (msgServerThread != null) {
@@ -378,7 +377,7 @@ public class IMLoginManager extends IMManager {
 		}
 
 		int loginResult = resp.getResult();
-
+//		int loginResult = 0;
 		logger.d("login#loginResult:%d", loginResult);
 
 		if (loginResult == 0) {

@@ -24,7 +24,7 @@ public class IMPacketDispatcher {
 		buffer.resetReaderIndex();
 		int commandId = header.getCommandId();
 		int serviceId = header.getServiceId();
-
+		System.err.println("commandID:" + commandId); 
 		ProtocolConstant.ProtocolDumper.dump(false, header);
 
 		logger.d("dispatch packet, serviceId:%d, commandId:%d", serviceId,

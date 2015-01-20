@@ -1,5 +1,6 @@
 package com.mogujie.tt.packet.base;
 
+import com.mogujie.tt.config.ProtocolConstant;
 import com.mogujie.tt.config.SysConstant;
 import com.mogujie.tt.log.Logger;
 
@@ -19,9 +20,9 @@ public class Header {
 	private int serviceId; // SID
 
 	private int commandId; // CID
-	private short version; // 版本号
+	private int version; // 版本号
 
-	private short reserved; // 保留，可用于如序列号等
+	private int reserved; // 保留，可用于如序列号等
 
 	public Header() {
 		length = 0;
@@ -39,11 +40,11 @@ public class Header {
 	public DataBuffer encode() {
 		DataBuffer db = new DataBuffer(SysConstant.PROTOCOL_HEADER_LENGTH);
 		db.writeInt(length);
-		db.writeShort((short) serviceId);
-		db.writeShort((short) commandId);
-		db.writeShort(version);
+		db.writeChar((char) serviceId);
+		db.writeChar((char) commandId);
+		db.writeChar((char)version);
 		logger.d("packet#header encode -> length:%d,  seviceId:%d, commandId:%d, version:%d, reserved:%d", length, serviceId, commandId, version, reserved);
-		db.writeShort(reserved);
+		db.writeChar((char)reserved);
 		return db;
 	}
 	
@@ -57,10 +58,10 @@ public class Header {
 			return;
 		try {
 			length = buffer.readInt();
-			serviceId = buffer.readShort();
-			commandId = buffer.readShort();
-			version = buffer.readShort();
-			reserved = buffer.readShort();
+			serviceId = buffer.readChar();
+			commandId = buffer.readChar();
+			version = buffer.readChar();
+			reserved = buffer.readChar();
 
 			logger.d(
 					"decode header, length:%d, version:%d, serviceId:%d, commandId:%d, reserved:%d",
@@ -106,20 +107,19 @@ public class Header {
 		this.length = length;
 	}
 
-	public short getVersion() {
+	public int getVersion() {
 		return version;
 	}
 
-	public void setVersion(short version) {
+	public void setVersion(int version) {
 		this.version = version;
 	}
 
-	public short getReserved() {
+	public int getReserved() {
 		return reserved;
 	}
 
-	public void setReserved(short reserved) {
+	public void setReserved(int reserved) {
 		this.reserved = reserved;
 	}
-
 }

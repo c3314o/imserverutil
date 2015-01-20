@@ -115,8 +115,7 @@ public class IMGroupManager extends IMManager {
 	}
 
 	public void fetchGroupList() {
-		logger.d("group#fetchGroupList");
-
+		//TODO load group
 		reqGetGroupList();
 		reqGetTempGroupList();
 		reqUnreadMsgGroupList();

@@ -135,7 +135,7 @@ public class SocketMessageQueue {
             }
 
             // 分配一个sequence number
-            short seqNo = action.getPacket().getRequest().getHeader()
+            int seqNo = action.getPacket().getRequest().getHeader()
                     .getReserved();
             action.setSquenceNo(seqNo);
             mActionQueue.offer(action);

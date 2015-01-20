@@ -63,6 +63,7 @@ public class IMContactManager extends IMManager {
 		if (triggerContactsDataReady()) {
 			logger.d("contact#contacts are already ready, notify it");
 		} else {
+			//TODO load contants
 			reqGetDepartments();
 			reqGetAllContacts();
 			reqGetRecentContacts();
@@ -94,7 +95,6 @@ public class IMContactManager extends IMManager {
 
 	private void reqGetDepartments() {
 		logger.i("contact#reqGetDepartments");
-
 		SocketThread channel = IMLoginManager.instance().getMsgServerChannel();
 		if (channel == null) {
 			logger.e("contact#channel is null");

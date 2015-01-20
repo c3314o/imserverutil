@@ -39,7 +39,7 @@ public class LoginPacket extends Packet {
         LoginRequest req = (LoginRequest) mRequest;
         if (null == req)
             return null;
-
+        System.err.println("username:" + req.getUser_id_url() + "==password:" + req.getUser_token());
         bodyBuffer.writeString(req.getUser_id_url());
         bodyBuffer.writeString(req.getUser_token());
         bodyBuffer.writeInt(req.getOnline_status());
@@ -52,7 +52,7 @@ public class LoginPacket extends Packet {
         DataBuffer buffer = new DataBuffer(headLength + bodyLength);
         buffer.writeDataBuffer(headerBuffer);
         buffer.writeDataBuffer(bodyBuffer);
-
+        System.out.println("数据包长度：" + buffer.readableBytes());
         return buffer;
     }
 
@@ -72,7 +72,7 @@ public class LoginPacket extends Packet {
                     ResponseLoginHeader.getCommandId() != ProtocolConstant.CID_LOGIN_RES_USERLOGIN)
                 return;
 
-            res.setServer_time(buffer.readInt());
+            //res.setServer_time(buffer.readInt());
             int nResult = buffer.readInt();
             res.setResult(nResult);
 
